@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.pe_prm_final">
+
+    <uses-permission android:name="com.example.pe_prm_final.permission.ACCESS_PROVIDER" />
+
+    <permission
+        android:name="com.example.pe_prm_final.permission.ACCESS_PROVIDER"
+        android:label="Permission to access MyLibraryProvider"
+        android:protectionLevel="signature" /> <!-- NEED TO IMPORT TO GET DATA -->
+
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PE_PRM_FINAL"
+        tools:targetApi="31">
+        <activity
+            android:name=".DeleteUpdateItemActivity"
+            android:exported="false"
+            android:label="Delete and Update Item"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AddNewItemActivity"
+            android:exported="false"
+            android:label="Add New Item"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> <!-- Khai bao provider de dung -->
+        <provider
+            android:name=".ItemProvider"
+            android:authorities="com.example.pe_prm_final"
+            android:exported="true"
+            android:permission="com.example.pe_prm_final.permission.ACCESS_PROVIDER" />
+    </application>
+
+    <queries>
+
+        <!-- PACKAGE OF PROVIDER APP -->
+        <package android:name="com.example.pe_prm_final" />
+    </queries>
+</manifest>
